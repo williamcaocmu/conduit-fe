@@ -20,8 +20,8 @@ const Feeds = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get("http://localhost:3001/articles");
-      setArticles(response.data.articles);
+      // const response = await axios.get("http://localhost:3001/articles");
+      // setArticles(response.data.articles);
     };
 
     fetchData();

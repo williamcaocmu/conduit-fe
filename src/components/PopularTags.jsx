@@ -6,8 +6,8 @@ const PopularTags = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get("http://localhost:3001/popularTags");
-      setTags(response.data.tags);
+      // const response = await axios.get("http://localhost:3001/popularTags");
+      // setTags(response.data.tags);
     };
 
     fetchData();

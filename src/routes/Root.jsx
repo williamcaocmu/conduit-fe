@@ -3,11 +3,16 @@ import Layout from "./Layout";
 import Home from "./Home";
 import Login from "./Login";
 import Register from "./Register";
+import AuthContextProvider from "../contexts/AuthContextProvider";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Layout />,
+    element: (
+      <AuthContextProvider>
+        <Layout />
+      </AuthContextProvider>
+    ),
     children: [
       {
         index: true,

@@ -1,11 +1,16 @@
+import { useContext } from "react";
 import { Outlet } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { AuthContext } from "../contexts/AuthContextProvider";
+import PrivateHeader from "../components/PrivateHeader";
 
 const Layout = () => {
+  const { authenticated } = useContext(AuthContext);
+
   return (
     <div>
-      <Header />
+      {authenticated ? <PrivateHeader /> : <Header />}
       <Outlet />
       <Footer />
     </div>
