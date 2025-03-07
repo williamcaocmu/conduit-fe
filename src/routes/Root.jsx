@@ -4,6 +4,7 @@ import Home from "./Home";
 import Login from "./Login";
 import Register from "./Register";
 import AuthContextProvider from "../contexts/AuthContextProvider";
+import ArticleDetails from "./ArticleDetails";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: "register",
         element: <Register />,
+      },
+      {
+        path: "article/:slug",
+        element: <ArticleDetails />,
       },
     ],
   },

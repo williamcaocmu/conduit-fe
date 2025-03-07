@@ -1,4 +1,9 @@
+import { useContext } from "react";
+import { AuthContext } from "../contexts/AuthContextProvider";
+
 const PrivateHeader = () => {
+  const { userProfile } = useContext(AuthContext);
+
   return (
     <nav className="navbar navbar-light">
       <div className="container">
@@ -28,7 +33,8 @@ const PrivateHeader = () => {
           <li className="nav-item">
             <a className="nav-link" href="/profile/eric-simons">
               <img src="" className="user-pic" />
-              Eric Simons
+              {/* userProfile = undefined, null, 0, "", false, NaN */}
+              {userProfile?.username}
             </a>
           </li>
         </ul>

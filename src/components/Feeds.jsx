@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import ArticlePreview from "./ArticlePreview";
 import axios from "axios";
-
+import { TagContext } from "../contexts/TagContextProvider";
 const FEEDS_TYPES = [
   {
     name: "Your Feed",
@@ -17,15 +17,18 @@ const Feeds = () => {
   // own, global
   const [activeFeed, setActiveFeed] = useState("own");
   const [articles, setArticles] = useState([]);
+  const { selectedTag } = useContext(TagContext);
 
   useEffect(() => {
     const fetchData = async () => {
-      // const response = await axios.get("http://localhost:3001/articles");
-      // setArticles(response.data.articles);
+      const response = await axios.get(
+        `http://localhost:3000/api/articles?tag=${selectedTag}`
+      );
+      setArticles(response.data.articles);
     };
 
     fetchData();
-  }, []);
+  }, [selectedTag]);
 
   return (
     <>
@@ -52,7 +55,7 @@ const Feeds = () => {
           author={article.author.username}
           createdAt={article.createdAt}
           likeCount={article.favoritesCount}
-          tags={article.tagList}
+          tags={article?.tagList ?? []} // article.tagList = undefined || null
           title={article.title}
           description={article.description}
           imageUrl={article.author.image}

@@ -1,12 +1,13 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { AuthContext } from "../contexts/AuthContextProvider";
 import { useNavigate } from "react-router-dom";
+
 const Register = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { setAuthenticated } = useContext(AuthContext);
+  const { setAuthenticated, authenticated } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -28,6 +29,12 @@ const Register = () => {
     // step 4: redirect to home page
     navigate("/");
   };
+
+  useEffect(() => {
+    if (authenticated) {
+      navigate("/");
+    }
+  }, [authenticated, navigate]);
 
   return (
     <div className="auth-page">
